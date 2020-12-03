@@ -19,10 +19,10 @@ class use_self_property(GenericDecorator):
     
     def decorator(self,function,func_self,*args,**kwargs):
             if len(args) == 0 and len(kwargs) < 1:
-                value = getattr(self.func_self,self.property_to_use)
-                return function(*args+(value,),**kwargs)
+                value = getattr(func_self,self.property_to_use)
+                return function(func_self, *args+(value,),**kwargs)
             else:
-                return function(*args,**kwargs)      
+                return function(func_self, *args,**kwargs)    
             
 class return_input_if_none(GenericDecorator):
     """
